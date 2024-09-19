@@ -136,6 +136,14 @@ const isSubSequence = (string: string, comparingString: string) => {
     const splitNoSpaceString = spaceRemovedString.split('');
     let prevFoundIndex = 0
 
+    if (string.length === 0) {
+        return true;
+    }
+
+    if (comparingString.length === 0) {
+        return false;
+    }
+
     for (let i = 0; i < splitString.length; i++) {
         const foundIndex = splitNoSpaceString.indexOf(splitString[i]);
         if (foundIndex !== -1 && prevFoundIndex > foundIndex) {
@@ -174,8 +182,8 @@ const isSubSequenceBySelf = (string: string, comparingString: string) => {
         return false;
     }
     if (string[0] === comparingString[0]) {
-        return isSubSequenceBySelf(string.slice(1), comparingString.slice(1));
+        return isSubSequenceBySelf(string.slice(1), comparingString.slice(1)); // 글자가 일치할 경우 0번째 이후 >> 1번째부터 다시 비교
     }
-    return isSubSequenceBySelf(string, comparingString.slice(1))
+    return isSubSequenceBySelf(string, comparingString.slice(1)) // 글자가 불일치할경우 더 긴글자의 다음글자 비교
 }
 

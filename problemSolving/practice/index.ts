@@ -295,7 +295,7 @@ const findLongestSubstring = (str) => {
             start = Math.max(start, seen[char]); // start 지점과 문자의 갯수중 더 큰것을 start 지점으로 재설정
         }
         // index - beginning of substring + 1 (to include current in count)
-        longest = Math.max(longest, i - start + 1);
+        longest = Math.max(longest, i - start + 1); // i-start+1 을 하면 현재루프에서 지정된 문자의 길이를 얻을 수 있음.
         // store the index of the next char so as to not double count
         seen[char] = i + 1;
     }

@@ -187,3 +187,118 @@ const isSubSequenceBySelf = (string: string, comparingString: string) => {
     return isSubSequenceBySelf(string, comparingString.slice(1)) // 글자가 불일치할경우 더 긴글자의 다음글자 비교
 }
 
+/*
+* Sliding Window - maxSubarraySum
+정수의 배열과 숫자가 주어졌을 때, 함수에 전달된 숫자의 길이를 가진 하위 배열의 최대 합을 구하는 maxSubarraySum이라는 함수를 작성하세요.
+
+하위 배열은 원래 배열의 연속적인 요소로 구성되어야 한다는 점에 유의하세요. 아래 첫 번째 예제에서 [100, 200, 300]은 원래 배열의 하위 배열이지만 [100, 300]은 그렇지 않습니다.
+
+maxSubarraySum([100,200,300,400], 2) // 700
+maxSubarraySum([1,4,2,10,23,3,1,0,20], 4)  // 39
+maxSubarraySum([-3,4,0,-2,6,-1], 2) // 5
+maxSubarraySum([3,-2,7,-4,1,-1,4,-2,1],2) // 5
+maxSubarraySum([2,3], 3) // null
+제약조건:
+
+Time Complexity - O(N)
+Space Complexity - O(1)
+* */
+
+const maxSubarraySum = (array: number[], numOfEle: number) => {
+    let maxValue = 0;
+    let sumValue = 0;
+
+    if (array.length < numOfEle) {
+        return null;
+    }
+
+    for (let i = 0; i < numOfEle; i++) {
+        sumValue += array[i]
+    }
+
+    let tempValue = sumValue;
+    maxValue = sumValue;
+
+    for (let j = numOfEle; j < array.length; j++) {
+        tempValue = tempValue - array[j - numOfEle] + array[j];
+        maxValue = Math.max(maxValue, tempValue)
+
+    }
+
+    return maxValue;
+}
+
+/*
+*
+* Sliding Window - minSubArrayLen
+양수 배열과 양수라는 두 개의 매개 변수를 받아들이는 minSubArrayLen이라는 함수를 작성하세요.
+이 함수는 합이 함수에 전달된 정수보다 크거나 같은 인접한 하위 배열의 최소 길이를 반환해야 합니다. 값이 없는 경우 0을 반환합니다.
+
+예시:
+
+minSubArrayLen([2,3,1,2,4,3], 7) // 2 -> because [4,3] is the smallest subarray
+minSubArrayLen([2,1,6,5,4], 9) // 2 -> because [5,4] is the smallest subarray
+minSubArrayLen([3,1,7,11,2,9,8,21,62,33,19], 52) // 1 -> because [62] is greater than 52
+minSubArrayLen([1,4,16,22,5,7,8,9,10],39) // 3
+minSubArrayLen([1,4,16,22,5,7,8,9,10],55) // 5
+minSubArrayLen([4, 3, 3, 8, 1, 2, 3], 11) // 2
+minSubArrayLen([1,4,16,22,5,7,8,9,10],95) // 0
+
+Time Complexity - O(n)
+Space Complexity - O(1)
+* */
+const minSubArrayLen = (array, number) => {
+    let start = 0;
+    let end = 0;
+    let sum = 0;
+    let minLength = Infinity;
+
+    while (start < array.length) {
+        if (sum < number && end < array.length) {
+            sum += array[end]
+            end++
+        } else if (sum >= number) {
+            minLength = Math.min(minLength, end - start);
+            sum -= array[start];
+            start++;
+        } else {
+            break;
+        }
+    }
+    return minLength === Infinity ? 0 : minLength;
+}
+
+
+/*
+*
+* 문자열을 받아 모든 고유 문자가 포함된 가장 긴 하위 문자열의 길이를 반환하는 findLongestSubstring이라는 함수를 작성하세요.
+
+findLongestSubstring('') // 0
+findLongestSubstring('rithmschool') // 7
+findLongestSubstring('thisisawesome') // 6
+findLongestSubstring('thecatinthehat') // 7
+findLongestSubstring('bbbbbb') // 1
+findLongestSubstring('longestsubstring') // 8
+findLongestSubstring('thisishowwedoit') // 6
+Time Complexity - O(n)
+*
+* */
+
+const findLongestSubstring = (str) => {
+    let longest = 0;
+    let seen = {};
+    let start = 0; // 이건 무엇에 대한 변수지?
+
+    for (let i = 0; i < str.length; i++) {
+        let char = str[i]; // 주어진문자열을 순서대로 가지고 와서
+        if (seen[char]) { // 해당오브젝트에 문자의 갯수가 들어있으면
+            start = Math.max(start, seen[char]); // start 지점과 문자의 갯수중 더 큰것을 start 지점으로 재설정
+        }
+        // index - beginning of substring + 1 (to include current in count)
+        longest = Math.max(longest, i - start + 1);
+        // store the index of the next char so as to not double count
+        seen[char] = i + 1;
+    }
+    return longest;
+
+}

@@ -1,0 +1,66 @@
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+### LensStudio template
+# gitignore template for LensStudio
+# website: https://lensstudio.snapchat.com/
+
+# macOS/IDE #
+.DS_Store
+.idea
+
+# js #
+node_modules
+yarn.lock
+
+# Python #
+__pycache__/
+*.py[cod]
+*$py.class
+[Bb]ackup*
+
+### core template
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
+nupkg/
+
+# Visual Studio Code
+.vscode
+
+# Rider
+.idea
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Visual Studio 2015
+.vs/
+
+

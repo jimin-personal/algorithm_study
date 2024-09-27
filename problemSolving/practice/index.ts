@@ -13,13 +13,14 @@ sameFrequency(22,222) // false
 * */
 
 const sameFrequency = (num1: number, num2: number) => {
+    // 일단 두숫자의 자릿수가 일치하지않으면 false 이므로 early return 처리
     if (num1.toString().length !== num2.toString().length) {
         return false;
     }
-
+    // 각각 구성하는 숫자를 오브젝트에 넣어서 정리
     const num1Composition = {};
     const num2Composition = {};
-
+    
     for (let numPart1 of num1.toString()) {
         num1Composition[numPart1] = (num1Composition[numPart1] || 0) + 1;
     }

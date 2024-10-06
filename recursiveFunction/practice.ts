@@ -180,3 +180,55 @@ function nestedEvenSumBySolution (obj, sum=0) {
     }
     return sum;
 }
+
+/*
+*
+* capitalizeWords라는 재귀 함수를 작성하시오. 단어 배열이 주어지면 각 단어가 대문자로 표시된 새 배열을 반환합니다.
+* (못풀었음)
+* wordsArray = ['i', 'am', 'learning', 'recursive']
+* */
+const capitalizeWords = (wordsArray: string[]) => {
+    if (wordsArray.length === 1) {
+        return [wordsArray[0].toUpperCase()];
+    }
+    let result = capitalizeWords(wordsArray.slice(0, -1));
+    result.push(wordsArray.slice(wordsArray.length-1)[0].toUpperCase());
+    return result
+}
+
+/*
+*
+* stringifyNumbers 객체를 받아 숫자인 모든 값을 찾아 문자열로 변환하는
+* stringifyNumbers라는 함수를 작성하시오. 재귀(Recursion) 함수는 이 문제를 해결하는 좋은 방법이 될 것입니다!
+* */
+
+const stringifyNumbers = (object) => {
+    const newObject = {}
+    for (let key in object) {
+        if (typeof object[key] === 'number') {
+            newObject[key] = object[key].toString()
+        } else if (typeof object[key] === 'object' && !Array.isArray(object[key])) {
+            newObject[key] = stringifyNumbers(object[key])
+        } else {
+            newObject[key] = object[key]
+        }
+    }
+
+    return newObject
+}
+
+/*
+*
+* collectStrings 객체를 받아들이고 문자열에 해당하는 모든 값의 배열을 반환하는 collectStrings라는 함수를 작성합니다.
+* */
+const collectStrings = (object) => {
+    let result = []
+    for (let key in object) {
+        if (typeof object[key] === 'string' ) {
+            result.push(object[key])
+        } else if (typeof object[key] === 'object' && !Array.isArray(object[key])) {
+            result = result.concat(collectStrings(object[key]));
+        }
+    }
+    return result;
+}

@@ -7,7 +7,7 @@ power
 * */
 
 //Naive
-function power(base, exponent) {
+function power(base:number, exponent:number) {
     let result;
     if (exponent === 0) {
         return 1;
@@ -21,7 +21,7 @@ function power(base, exponent) {
 * */
 
 //Naive
-function factorial(number) {
+function factorial(number: number) {
     if (number < 0) {
         return 0;
     }
@@ -37,7 +37,7 @@ function factorial(number) {
 * */
 
 //Naive
-const productOfArray = (arr) => {
+const productOfArray = (arr: number[]) => {
     if (arr.length === 0) {
         return 1;
     }
@@ -50,7 +50,7 @@ const productOfArray = (arr) => {
 * */
 
 //Naive
-function recursiveRange(number) {
+function recursiveRange(number:number) {
     if (number === 0) {
         return 0
     }
@@ -65,7 +65,7 @@ fib
 */
 
 //Naive
-function fib(number) {
+function fib(number: number) {
     if (number <= 2) {
         return 1;
     }
@@ -79,7 +79,7 @@ function fib(number) {
 * */
 
 //Naive
-function isPalindrome(string) {
+function isPalindrome(string:string) {
     if (string[0] === string[string.length - 1] && string.length > 1) {
         return isPalindrome(string.slice(1, string.length - 1))
     }
@@ -91,3 +91,92 @@ function isPalindrome(string) {
 * 이 함수는 배열의 단일 값이 콜백에 전달될 때 true를 반환하면 true를 반환합니다.
 * 그렇지 않으면 false를 반환합니다.
 * */
+// Naive code
+function someRecursive(array: any[], func: any){
+    if (!!array[0] && func(array[0])) {
+        return true;
+    }
+    if (array.length > 1) {
+        return someRecursive(array.slice(1), func)
+    }
+    return false
+}
+
+// solution
+const someRecursiveFunc = (array: any[], func: any) => {
+    if (array.length === 0) {
+        return false;
+    }
+    if (func(array[0])) {
+        return true;
+    }
+    return someRecursiveFunc(array.slice(1), func);
+}
+
+/*
+* 배열의 배열을 받아들이고 모든 값이 평활화(flattened)된 새 배열을 반환하는 flatten이라는 재귀(recursive ) 함수를 작성합니다.
+* */
+const flatten = (oldArr: any[]) => {
+    let newArr = [];
+    for (let i=0; i < oldArr.length; i++) {
+        if (Array.isArray(oldArr[i])) { // isArray라는 메소드를 기억....
+            newArr = newArr.concat(flatten(oldArr[i]));
+        } else {
+            newArr.push(oldArr[i]);
+        }
+    }
+    return newArr
+}
+
+
+/*
+*
+* capitalizeFirst
+capitalizeFirst라는 재귀 함수를 작성하시오.
+문자열 배열이 주어지면 배열에 있는 각 문자열의 첫 글자를 대문자로 바꿔주는 함수입니다.
+*
+* */
+// 왜 이렇게 풀어야하는지 전혀 모르겠따....................
+function capitalizeFirst (array: string[]) {
+    if (array.length === 1) {
+        return [array[0][0].toUpperCase() + array[0].slice(1)];
+    }
+    const res = capitalizeFirst(array.slice(0, -1));
+    const string = array.slice(array.length - 1)[0][0].toUpperCase() + array.slice(array.length-1)[0].slice(1);
+    res.push(string);
+    return res;
+}
+
+
+/*
+*
+* nestedEvenSum
+* nestedEvenSum이라는 재귀 함수를 작성하시오.
+* 중첩된(nested) 객체를 포함할 수 있는 객체에서 모든 짝수의 합계를 반환하는 함수입니다.
+*
+* */
+// Naive code
+function nestedEvenSum (object: any) {
+    const keys = Object.keys(object);
+    let nestedSum = 0;
+    for(let i = 0; i < keys.length ; i++) {
+        if (typeof object[`${keys[i]}`] === 'object'){
+            nestedSum += nestedEvenSum(object[keys[i]])
+        } else if(typeof object[`${keys[i]}`] === 'number' && object[`${keys[i]}`] % 2 === 0 ) {
+            nestedSum += object[keys[i]]
+        }
+    }
+    return nestedSum;
+}
+
+// solution
+function nestedEvenSumBySolution (obj, sum=0) {
+    for (let key in obj) {
+        if (typeof obj[key] === 'object'){
+            sum += nestedEvenSum(obj[key]);
+        } else if (typeof obj[key] === 'number' && obj[key] % 2 === 0){
+            sum += obj[key];
+        }
+    }
+    return sum;
+}

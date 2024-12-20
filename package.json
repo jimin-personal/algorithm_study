@@ -1,0 +1,21 @@
+{
+  "name": "algorithm_study",
+  "version": "1.0.0",
+  "description": "이 Repository 자바스크립트 자료구조 및 알고리즘 스터디를 위한 Repository 입니다",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "jest": {
+    "preset": "ts-jest"
+  },
+  "dependencies": {
+    "typescript": "^5.6.2"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
+  }
+}

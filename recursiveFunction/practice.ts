@@ -7,7 +7,7 @@ power
 * */
 
 //Naive
-function power(base:number, exponent:number) {
+function power(base: number, exponent: number) {
     let result;
     if (exponent === 0) {
         return 1;
@@ -50,7 +50,7 @@ const productOfArray = (arr: number[]) => {
 * */
 
 //Naive
-function recursiveRange(number:number) {
+function recursiveRange(number: number) {
     if (number === 0) {
         return 0
     }
@@ -79,7 +79,7 @@ function fib(number: number) {
 * */
 
 //Naive
-function isPalindrome(string:string) {
+function isPalindrome(string: string) {
     if (string[0] === string[string.length - 1] && string.length > 1) {
         return isPalindrome(string.slice(1, string.length - 1))
     }
@@ -91,8 +91,9 @@ function isPalindrome(string:string) {
 * 이 함수는 배열의 단일 값이 콜백에 전달될 때 true를 반환하면 true를 반환합니다.
 * 그렇지 않으면 false를 반환합니다.
 * */
+
 // Naive code
-function someRecursive(array: any[], func: any){
+function someRecursive(array: any[], func: any) {
     if (!!array[0] && func(array[0])) {
         return true;
     }
@@ -118,7 +119,7 @@ const someRecursiveFunc = (array: any[], func: any) => {
 * */
 const flatten = (oldArr: any[]) => {
     let newArr = [];
-    for (let i=0; i < oldArr.length; i++) {
+    for (let i = 0; i < oldArr.length; i++) {
         if (Array.isArray(oldArr[i])) { // isArray라는 메소드를 기억....
             newArr = newArr.concat(flatten(oldArr[i]));
         } else {
@@ -136,13 +137,14 @@ capitalizeFirst라는 재귀 함수를 작성하시오.
 문자열 배열이 주어지면 배열에 있는 각 문자열의 첫 글자를 대문자로 바꿔주는 함수입니다.
 *
 * */
+
 // 왜 이렇게 풀어야하는지 전혀 모르겠따....................
-function capitalizeFirst (array: string[]) {
+function capitalizeFirst(array: string[]) {
     if (array.length === 1) {
         return [array[0][0].toUpperCase() + array[0].slice(1)];
     }
     const res = capitalizeFirst(array.slice(0, -1));
-    const string = array.slice(array.length - 1)[0][0].toUpperCase() + array.slice(array.length-1)[0].slice(1);
+    const string = array.slice(array.length - 1)[0][0].toUpperCase() + array.slice(array.length - 1)[0].slice(1);
     res.push(string);
     return res;
 }
@@ -155,14 +157,15 @@ function capitalizeFirst (array: string[]) {
 * 중첩된(nested) 객체를 포함할 수 있는 객체에서 모든 짝수의 합계를 반환하는 함수입니다.
 *
 * */
+
 // Naive code
-function nestedEvenSum (object: any) {
+function nestedEvenSum(object: any) {
     const keys = Object.keys(object);
     let nestedSum = 0;
-    for(let i = 0; i < keys.length ; i++) {
-        if (typeof object[`${keys[i]}`] === 'object'){
+    for (let i = 0; i < keys.length; i++) {
+        if (typeof object[`${keys[i]}`] === 'object') {
             nestedSum += nestedEvenSum(object[keys[i]])
-        } else if(typeof object[`${keys[i]}`] === 'number' && object[`${keys[i]}`] % 2 === 0 ) {
+        } else if (typeof object[`${keys[i]}`] === 'number' && object[`${keys[i]}`] % 2 === 0) {
             nestedSum += object[keys[i]]
         }
     }
@@ -170,11 +173,11 @@ function nestedEvenSum (object: any) {
 }
 
 // solution
-function nestedEvenSumBySolution (obj, sum=0) {
+function nestedEvenSumBySolution(obj, sum = 0) {
     for (let key in obj) {
-        if (typeof obj[key] === 'object'){
+        if (typeof obj[key] === 'object') {
             sum += nestedEvenSum(obj[key]);
-        } else if (typeof obj[key] === 'number' && obj[key] % 2 === 0){
+        } else if (typeof obj[key] === 'number' && obj[key] % 2 === 0) {
             sum += obj[key];
         }
     }
@@ -192,7 +195,7 @@ const capitalizeWords = (wordsArray: string[]) => {
         return [wordsArray[0].toUpperCase()];
     }
     let result = capitalizeWords(wordsArray.slice(0, -1));
-    result.push(wordsArray.slice(wordsArray.length-1)[0].toUpperCase());
+    result.push(wordsArray.slice(wordsArray.length - 1)[0].toUpperCase());
     return result
 }
 
@@ -224,7 +227,7 @@ const stringifyNumbers = (object) => {
 const collectStrings = (object) => {
     let result = []
     for (let key in object) {
-        if (typeof object[key] === 'string' ) {
+        if (typeof object[key] === 'string') {
             result.push(object[key])
         } else if (typeof object[key] === 'object' && !Array.isArray(object[key])) {
             result = result.concat(collectStrings(object[key]));
@@ -232,15 +235,15 @@ const collectStrings = (object) => {
     }
     return result;
 }
+
 function collectStringsHelper(obj) {
-    var stringsArr = [];
+    let stringsArr = [];
 
     function gatherStrings(o) {
-        for(var key in o) {
-            if(typeof o[key] === 'string') {
+        for (let key in o) {
+            if (typeof o[key] === 'string') {
                 stringsArr.push(o[key]);
-            }
-            else if(typeof o[key] === 'object') {
+            } else if (typeof o[key] === 'object') {
                 return gatherStrings(o[key]);
             }
         }

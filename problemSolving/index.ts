@@ -50,5 +50,6 @@ const charCount = (str) => {
 
 const isAlphaNumeric = (char: string) => {
     const code = char.charCodeAt(0);
+    // 47 < code < 58 = 숫자, 64 < code < 91 = 알파벳대문자, 96 < code < 123 = 알파벳소문자
     return !(!(code > 47 && code < 58) && !(code > 64 && code < 91) && !(code > 96 && code < 123));
 }

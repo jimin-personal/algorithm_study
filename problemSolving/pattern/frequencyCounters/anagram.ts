@@ -3,12 +3,15 @@
 * An anagram is a word, phrase, or name formed by rearranging the letters of another,
 * such as cinema, formed from iceman.
 *
+* 두 개의 문자열이 주어지면 두 번째 문자열이 첫 번째 문자열의 철자법인지 확인하는 함수를 작성하세요.
+* 철자 바꾸기(anagram)는 아이스맨(iceman)에서 형성된 시네마(cinema) 등의 다른 문자를 재배열하여 형성된 단어, 구문 또는 이름입니다.
+*
 * validAnagram('', '') // true
-* validAnagram( 'aaz', 'zza') // false
-* validAnagram( 'anagram', 'nagaram') // true
-* validAnagram ("rat", "car") // false) // false
-* validAnagram ( 'awesome', 'awesom') // false
-* validAnagram 'qwerty' ,'geywrt') // true
+* validAnagram('aaz', 'zza') // false
+* validAnagram('anagram', 'nagaram') // true
+* validAnagram('rat', 'car') // false
+* validAnagram('awesome', 'awesom') // false
+* validAnagram('qwerty' ,'geywrt') // true
 * validAnagram( 'texttwisttime', 'timetwisttext') // true
 * */
 
